@@ -4,10 +4,6 @@ const http = require('http');
 const  server = http.createServer((req, res) => {
     console.log(req.url);
 
-    // API
-    const data = fs.readFileSync(`${__dirname}/USerAPI/UserAPI.json`, 'utf-8');
-    const Objdata = JSON.parse(data);
-
     if(req.url == '/') {
         res.end('Hello From The Home Side.....!');
     } else if (req.url == '/about') {
@@ -15,13 +11,11 @@ const  server = http.createServer((req, res) => {
     } else if (req.url == '/contact') {
         res.end('Hello From The ContactUS Side.....!');
     } else if (req.url == '/userapi') {
-        // This API is call everytime... to avoide this we use this in starting using Sync (see API on top)
         fs.readFile(`${__dirname}/USerAPI/UserAPI.json`, 'utf-8', (err, data) => {
             console.log(data);
-            // res.end(data);
-            res.end(Objdata[0].name)
+            res.end(data);
         })
-        // res.end('Hello From The UserAPI Side.....!');
+        res.end('Hello From The UserAPI Side.....!');
     } else {
         res.writeHead(404, { "Content-Type": "text/html"});
         res.end ('<h1> 404 error... Page does not exit...!</h1>');

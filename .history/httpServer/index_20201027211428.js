@@ -18,7 +18,7 @@ const  server = http.createServer((req, res) => {
         // This API is call everytime... to avoide this we use this in starting using Sync (see API on top)
         fs.readFile(`${__dirname}/USerAPI/UserAPI.json`, 'utf-8', (err, data) => {
             console.log(data);
-            // res.end(data);
+            res.end(data);
             res.end(Objdata[0].name)
         })
         // res.end('Hello From The UserAPI Side.....!');
